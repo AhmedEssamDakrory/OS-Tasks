@@ -1,4 +1,4 @@
-# Task 1:
+# Task 1
 An Assignment on Signals and forking.
 
 ### Brief Description:
