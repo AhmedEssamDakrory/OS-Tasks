@@ -1,4 +1,4 @@
-# Task 1
+## Task 1
 An Assignment on Signals and forking.
 
 ### Brief Description:
@@ -10,5 +10,5 @@ which we implemented a new handler for it that prints the pid of that
 child and its exit code.
 
 ### Implemented by:
-@AhmedEssanDakrory
-@karashily
+[@AhmedEssamDakrory]( https://github.com/AhmedEssamDakrory )
+[@karashily]( https://github.com/karashily )

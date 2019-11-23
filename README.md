@@ -2,9 +2,8 @@
 Tasks On Operating Systems Cousre implemented with C/C++.
 
 ### Implemented by:
-@AhmedEssanDakrory
-@karashily
-
+[@AhmedEssamDakrory]( https://github.com/AhmedEssamDakrory )
+[@karashily]( https://github.com/karashily )
 
 ## Task 1:
 An Assignment on Signals and forking.
