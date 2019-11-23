@@ -20,7 +20,7 @@ child and its exit code.
 apt-get install g++
 ```
 
-### Installation
+### Usage
 
 1. Build the file using the makefile by simply opening the shell and typing:
 ```sh
