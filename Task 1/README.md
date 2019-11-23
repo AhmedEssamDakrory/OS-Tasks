@@ -12,3 +12,25 @@ child and its exit code.
 ### Implemented by:
 [@AhmedEssamDakrory]( https://github.com/AhmedEssamDakrory )
 [@karashily]( https://github.com/karashily )
+
+### Prerequisites
+
+* g++
+```sh
+apt-get install g++
+```
+
+### Installation
+
+1. Build the file using the makefile by simply opening the shell and typing:
+```sh
+make
+```
+  or Build using g++ by typing:
+```sh
+g++ task1.cpp -o task1.out
+```
+2. Run the program
+```sh
+./task1
+```
