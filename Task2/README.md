@@ -19,7 +19,7 @@ apt-get install python3.6
 ```
 ### Usage
 
-Build the c++ file using g++ by typing:
+1. Build the c++ file using g++ by typing:
 ```sh
 g++ task2.cpp -o task2.out
 ```
@@ -27,7 +27,7 @@ g++ task2.cpp -o task2.out
 ```sh
 ./task2
 ```
-3- It will ask you to:
+3. It will ask you to:
 ```sh
    1.Enter the input file name (input1.txt and input2.txt are two valid inputs feel free to use them).
    (input file format):
@@ -37,7 +37,7 @@ g++ task2.cpp -o task2.out
    3.Specify the “Context Switching” time.
    4.Specify the “Time Quantum” in case of choosing RoundRobin.
 ```
-4. then run the python file to plot the timing diagram.
+4. Then run the python file to plot the timing diagram.
 ```sh
 python plot.py
 ```
