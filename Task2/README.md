@@ -30,6 +30,9 @@ g++ task2.cpp -o task2.out
 3- It will ask you to:
 ```sh
    1.Enter the input file name (input1.txt and input2.txt are two valid inputs feel free to use them).
+   (input file format):
+      first line contains a number n which is the number of processes.
+      then each of the next n lines contains 3 integers ( arriving time , burst time and priority) respectively. 
    2.Choose one of the implemented scheduling algorithms to run.
    3.Specify the “Context Switching” time.
    4.Specify the “Time Quantum” in case of choosing RoundRobin.
