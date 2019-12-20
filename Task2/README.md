@@ -43,5 +43,5 @@ python plot.py
 ```
 
 ### Output
-1. A visual graph that shows the generateds chedule
+1. A visual graph that shows the generated schedule
 2. some statistics(turn-around time and waiting time for each process ... etc) in the statistics.txt file.
