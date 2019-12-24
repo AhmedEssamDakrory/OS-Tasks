@@ -1,7 +1,6 @@
-process #1----> turn arround time = 6 --- waiting time = 3 --- weighted TA = 2.000000
-process #2----> turn arround time = 10 --- waiting time = 5 --- weighted TA = 2.000000
-process #3----> turn arround time = 5 --- waiting time = 3 --- weighted TA = 2.500000
-process #4----> turn arround time = 9 --- waiting time = 4 --- weighted TA = 1.800000
-process #5----> turn arround time = 8 --- waiting time = 3 --- weighted TA = 1.600000
-Average Turnaround time of theschedule : 7.600000
-Average Weighted turnaround time of theschedule : 1.980000
+process #1----> turn arround time = 2 --- waiting time = 0 --- weighted TA = 1.000000
+process #2----> turn arround time = 6 --- waiting time = 1 --- weighted TA = 1.200000
+process #3----> turn arround time = 3 --- waiting time = 2 --- weighted TA = 3.000000
+process #4----> turn arround time = 7 --- waiting time = 5 --- weighted TA = 3.500000
+Average Turnaround time of theschedule : 4.500000
+Average Weighted turnaround time of theschedule : 2.175000

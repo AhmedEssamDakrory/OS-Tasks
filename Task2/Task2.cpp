@@ -22,7 +22,13 @@ void FCFS(int num , int context_time){
 	while(!pq.empty()){
 		int process_number = pq.top().S;
 		int arr_time = pq.top().F;
-		if(start < arr_time) start = arr_time;
+		if(start < arr_time){
+			//idle time....
+			while(start < arr_time){
+				graph[start++] = -1; //idle
+			}
+
+		}
 		for(int r = 0 ; r < burstTime[process_number] ; ++r) graph[start++] = process_number;
 		start += context_time;
 		pq.pop();
@@ -36,7 +42,10 @@ void HPF(int num , int context_time){
 	for(int i = 1 ; i <= num ; ++i){
 		pq1.push({arrivingTime[i] , i});
 	}
-	start = max(start , pq1.top().F);
+	while(start < pq1.top().F){
+		graph[start++] = -1; //idle time...
+	}
+
 	while(!pq1.empty()){
 		if(pq1.top().F <= start){
 			pq2.push({Priority[pq1.top().S] ,pq1.top().S });
@@ -52,7 +61,11 @@ void HPF(int num , int context_time){
 			graph[start++] = process_number;
 		}
 		start += context_time;
-		if(pq2.empty() && !pq1.empty()) start = max(start , pq1.top().F);
+		if(pq2.empty() && !pq1.empty()) {
+			while(start < pq1.top().F){
+				graph[start++] = -1; //idle time...
+			}
+		}
 		while(!pq1.empty()){
 			if(pq1.top().F <= start){
 				pq2.push({Priority[pq1.top().S] ,pq1.top().S });
@@ -71,7 +84,9 @@ void RR(int num , int context_time , int quantum){
 		pq.push({arrivingTime[i] , i});
 	}
 	queue<pair<int , int>> ready;
-	start=max(start,pq.top().F);
+	while(start < pq.top().F){
+		graph[start++] = -1; //idle time...
+	}
 	ready.push({pq.top().S , burstTime[pq.top().S]});
 	pq.pop();
 	while(1){
@@ -88,7 +103,9 @@ void RR(int num , int context_time , int quantum){
 
 		start += context_time;
 		if(ready.empty() && !pq.empty()){
-			start = max(start,pq.top().F);
+			while(start < pq.top().F){
+				graph[start++] = -1; //idle time...
+			}
 		}
 
 		while(!pq.empty()){
@@ -104,6 +121,56 @@ void RR(int num , int context_time , int quantum){
 
 	}
 
+}
+
+void SRTN(int num , int context_time){
+	//int start = 0;
+	priority_queue<pair<pair<int , int>,int> , vector<pair<pair<int , int>,int>> , greater<pair<pair<int , int>,int>> > pq;
+	for(int i = 1 ; i <= num ; ++i){
+		pair<int ,int> p  = {arrivingTime[i],burstTime[i]};
+		pq.push({p,i});
+	}
+	priority_queue<pair<int , int> , vector<pair<int , int>> , greater<pair<int , int>> > ready;
+	int pre = 0;
+	while(start < pq.top().F.F){
+		graph[start++] = -1; //idle time...
+	}
+
+	while(1){
+		if(pq.empty() && ready.empty()) break;
+
+		while(!pq.empty()){
+			if(pq.top().F.F <= start){
+				ready.push({burstTime[pq.top().S] , pq.top().S});
+				pq.pop();
+			}
+			else break;
+		}
+
+		int turn = ready.top().S;
+		graph[start++] = turn;
+		int remaining_time = ready.top().F;
+		ready.pop();
+		remaining_time--;
+		if(turn != pre && pre ){
+			start += context_time;
+		}
+
+		if(remaining_time > 0){
+			ready.push({remaining_time , turn});
+		}
+		else{
+			start+=context_time;
+			pre = 0;
+		}
+		if(ready.empty() && !pq.empty()) {
+			while(start < pq.top().F.F){
+				graph[start++] = -1; //idle time...
+			}
+		}
+		pre = turn;
+
+	}
 }
 
 int main()
@@ -134,6 +201,7 @@ int main()
 	if(x == 1) HPF(n,c);
 	else if(x == 2) FCFS(n,c);
 	else if(x == 3) RR(n,c,quantum);
+	else if(x == 4) SRTN(n,c);
 
 	ofstream cout;
 	cout.open("data1.txt");
@@ -170,5 +238,5 @@ int main()
 
 
 
-
 }
+
