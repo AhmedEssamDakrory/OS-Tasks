@@ -1,13 +1,15 @@
 import numpy as np 
 import sys
 
-inputFileName = "generator_input.txt"
+# getting input file from user
+print("Please Enter the Name of the Input File: ")
+inputFileName = input()
 
 # reading parameters from the input file
-input = open(inputFileName, "r")
+param = open(inputFileName, "r")
 
-if input.mode == 'r':
-   	contents = input.readlines()
+if param.mode == 'r':
+   	contents = param.readlines()
 
 processNo = int(contents[0])
 arrivalMu = float(contents[1].split()[0])
@@ -21,9 +23,15 @@ arrivalTime = np.random.normal(loc=arrivalMu, scale=arrivalSigma, size=processNo
 burstTime = np.random.normal(loc=burstMu, scale=burstSigma, size=processNo).astype(int)
 priority = np.random.poisson(lam=priorityLamda, size=processNo).astype(int)
 
+# getting output file name from user
+print("Please Enter the Name of the Output File:")
+outputFileName = input()
+
 # saving processes parameters in output file
-output = open("generator_output.txt", "w+")
+output = open(outputFileName, "w+")
 
 output.write("%d\n" % processNo)
 for i in range(processNo):
     output.write("%d %d %d\n" % (arrivalTime[i], burstTime[i], priority[i]))
+
+print("file %s generated sucessfully!" % outputFileName)
