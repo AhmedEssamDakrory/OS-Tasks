@@ -1,7 +1,10 @@
 import numpy as np 
+import sys
+
+inputFileName = "generator_input.txt"
 
 # reading parameters from the input file
-input = open("generator_input.txt", "r")
+input = open(inputFileName, "r")
 
 if input.mode == 'r':
    	contents = input.readlines()
