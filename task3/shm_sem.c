@@ -68,11 +68,6 @@ int Incrementor(int shmid, int sem) {
     up(sem);   
 
     printf("Incrementor: Our shared value is %d now\n", *shmaddr);	    
-
-    sleep(2);
-    printf("\nFinal Value is %d\n", *shmaddr);
-    
-    shmdt(shmaddr);
   }  	 
 }
 
@@ -111,7 +106,7 @@ int main() {
     exit(-1);
   }
   else {
-   	printf("Shared memory ID = %d\n", shmid);
+   	printf("\nShared memory ID = %d\n", shmid);
   }
 
   // getting the semaphore (size = 1 because it's a binary semaphore)
@@ -146,6 +141,8 @@ int main() {
   else if(pid != -1) {
   	Incrementor(shmid, semid);
     wait(NULL);
+    printf("\nFinal Value is %d\n\n", *shmaddr);
+    shmdt(shmaddr);
   }
   else {
     perror("Error in fork");

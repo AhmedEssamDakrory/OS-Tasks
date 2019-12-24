@@ -27,12 +27,7 @@ int Incrementor(int shmid) {
       *shmaddr = ReadValue + 1;
     }
 
-    printf("Incrementor: Our shared value is %d now\n", *shmaddr);	    
-
-    sleep(2);
-    printf("\nFinal Value is %d\n", *shmaddr);
-    
-    shmdt(shmaddr);
+    printf("Incrementor: Our shared value is %d now\n", *shmaddr);
   }  	 
 }
 
@@ -58,7 +53,7 @@ int Decrementor(int shmid) {
 
 int main() {
   int shmid, pid, *shmaddr;
-  
+
   // getting the shared memory
   shmid = shmget(IPC_PRIVATE, 10, IPC_CREAT|0644);
   
@@ -67,7 +62,7 @@ int main() {
     exit(-1);
   }
   else {
-   	printf("Shared memory ID = %d\n", shmid);
+   	printf("\nShared memory ID = %d\n", shmid);
   }
   
   shmaddr = (int*) shmat(shmid, (void *)0, 0);
@@ -88,6 +83,8 @@ int main() {
   else if(pid != -1) {
   	Incrementor(shmid);
     wait(NULL);
+    printf("\nFinal Value is %d\n\n", *shmaddr);
+    shmdt(shmaddr);
   }
   else {
     perror("Error in fork");
