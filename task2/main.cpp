@@ -11,7 +11,7 @@ int main(int argc, char* argv[]) {
     int mode;
     bool modeSelected = false;
     while (!modeSelected) {
-        printf("What Do You Want to use now?\n\t1- Generator\n\t2- Schedular\n");
+        printf("What Do You Want to use now?\n\t1- Generator\n\t2- Schedular\n>>> ");
         cin >> mode;
         if (mode == 1 || mode == 2) {
             modeSelected == true;
@@ -35,10 +35,13 @@ int main(int argc, char* argv[]) {
 
             execvp(args[0], args);
             printf("FATAL ERROR: Failed to start generator.\n");
-            return 1;
+            exit(1);
         }
-        else {
-            wait(NULL);
+        else { 
+            int stat; 
+            wait(&stat);
+            if (WIFEXITED(stat) && WEXITSTATUS(stat) == 1) 
+                return 1;
             printf("Generator finished.....\n\n");
         }
     }
@@ -56,10 +59,14 @@ int main(int argc, char* argv[]) {
 
             execvp(args[0], args);
             printf("FATAL ERROR: Failed to start schedular.\n");
-            return 2;
+            exit(2);
         }
         else {
-            wait(NULL);
+            int stat; 
+            wait(&stat);
+            if (WIFEXITED(stat) && WEXITSTATUS(stat) == 2) 
+                return 2;
+                
             printf("Schedular finished....\n\n");
             pid = fork();
 
@@ -75,10 +82,14 @@ int main(int argc, char* argv[]) {
 
                 execvp(args[0], args);
                 printf("FATAL ERROR: Failed to start plotter.\n");
-                return 3;
+                exit(3); 
             }
             else {
-                wait(NULL);
+                int stat; 
+                wait(&stat);
+                if (WIFEXITED(stat) && WEXITSTATUS(stat) == 3) 
+                    return 3; 
+
                 printf("Plotter finished...\n\n");
             }
         }
