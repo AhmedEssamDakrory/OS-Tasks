@@ -3,6 +3,7 @@ import sys
 
 # getting input file from user
 print("Please Enter the Name of the Input File: ")
+print(">>> ", end = " ")
 inputFileName = input()
 
 # reading parameters from the input file
@@ -25,6 +26,7 @@ priority = np.random.poisson(lam=priorityLamda, size=processNo).astype(int)
 
 # getting output file name from user
 print("Please Enter the Name of the Output File:")
+print(">>> ", end = " ")
 outputFileName = input()
 
 # saving processes parameters in output file

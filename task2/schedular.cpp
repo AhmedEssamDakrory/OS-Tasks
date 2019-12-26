@@ -176,18 +176,22 @@ void SRTN(int num , int context_time){
 int main()
 {
 	cout<<"Enter input file name.....\n";
+	cout << ">>> ";
 	string filename; cin>>filename;
 	cout<<"Enter the number of the algorithm you want to run...... \n";
 	cout<<"1- HPF algorithm\n";
 	cout<<"2- FCFS algorithm\n";
 	cout<<"3- RR algorithm\n";
 	cout<<"4- SRTN algorithm\n";
+	cout << ">>> ";
 	int x; cin>>x;
 	cout<<"Specify the context switching time........ \n";
+	cout << ">>> ";
 	int c; cin>>c;
 	int quantum;
 	if(x == 3){
 		cout<<"Specify Time quantum.....\n";
+		cout << ">>> ";
 		cin>>quantum;
 	}
 	ifstream cin;
