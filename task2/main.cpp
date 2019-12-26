@@ -25,35 +25,37 @@ int main(int argc, char* argv[]) {
         int pid = fork();
 
         if(!pid) {
-            printf("Starting generator....\n");
+            printf("\nStarting generator....\n");
             char* args[2];
             args[0] = "python";
             args[1] = "generator.py";
             args[2] = NULL;
 
             execvp(args[0], args);
-            printf("Failed to start generator.\n");
+            printf("FATAL ERROR: Failed to start generator.\n");
+            return 1;
         }
         else {
             wait(NULL);
-            printf("Generator finished.....\n");
+            printf("Generator finished.....\n\n");
         }
     }
     else {
         int pid = fork();
 
         if(!pid) {
-            printf("Starting schedular....\n");
+            printf("\nStarting schedular....\n");
             char* args[1];
             args[0] = "./schedular.out";
             args[1] = NULL;
 
             execvp(args[0], args);
-            printf("Failed to start schedualr.\n");
+            printf("FATAL ERROR: Failed to start schedular.\n");
+            return 2;
         }
         else {
             wait(NULL);
-            printf("Schedular finished....\n");
+            printf("Schedular finished....\n\n");
             pid = fork();
 
             if(!pid) {
@@ -64,11 +66,12 @@ int main(int argc, char* argv[]) {
                 args[2] = NULL;
 
                 execvp(args[0], args);
-                printf("Failed to start plotter.\n");
+                printf("FATAL ERROR: Failed to start plotter.\n");
+                return 3;
             }
             else {
                 wait(NULL);
-                printf("Plotter finished...\n");
+                printf("Plotter finished...\n\n");
             }
         }
     }
