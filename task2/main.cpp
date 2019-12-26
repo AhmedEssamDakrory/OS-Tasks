@@ -23,8 +23,10 @@ int main(int argc, char* argv[]) {
     }
     if(mode == 1) {
         int pid = fork();
-
-        if(!pid) {
+        if(pid == -1) {
+            printf("FATAL ERROR: Fork failed\n");
+        }
+        else if(!pid) {
             printf("\nStarting generator....\n");
             char* args[2];
             args[0] = "python";
@@ -43,7 +45,10 @@ int main(int argc, char* argv[]) {
     else {
         int pid = fork();
 
-        if(!pid) {
+        if(pid == -1) {
+            printf("FATAL ERROR: Fork failed\n");
+        }
+        else if(!pid) {
             printf("\nStarting schedular....\n");
             char* args[1];
             args[0] = "./schedular.out";
@@ -58,7 +63,10 @@ int main(int argc, char* argv[]) {
             printf("Schedular finished....\n\n");
             pid = fork();
 
-            if(!pid) {
+            if(pid == -1) {
+            printf("FATAL ERROR: Fork failed\n");
+            }
+            else if(!pid) {
                 printf("Plotting data....\n");
                 char* args[2];
                 args[0] = "python";
@@ -75,5 +83,5 @@ int main(int argc, char* argv[]) {
             }
         }
     }
-    
+    return 0;
 }
