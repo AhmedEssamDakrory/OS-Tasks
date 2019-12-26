@@ -52,7 +52,6 @@ up(int sem) {
 int Incrementor(int shmid, int sem) {
   int *shmaddr, ReadValue;
   int i;
-  char quit_message[5];
    
   shmaddr = (int*) shmat(shmid, (void *)0, 0);
   if(shmaddr == -1) {	
@@ -60,12 +59,12 @@ int Incrementor(int shmid, int sem) {
   	exit(-1);
   }
   else {
-    down(sem); 
     for (i=0; i<PERIOD; i++){
+      down(sem); 
       ReadValue = *shmaddr;
       *shmaddr = ReadValue + 1;
+      up(sem);   
     }
-    up(sem);   
 
     printf("Incrementor: Our shared value is %d now\n", *shmaddr);	    
   }  	 
@@ -80,12 +79,12 @@ int Decrementor(int shmid, int sem) {
   	exit(-1);
   }
   else {
-    down(sem);  
     for(i=0; i<PERIOD; i++){
+      down(sem);  
       ReadValue = *shmaddr;	    
       *shmaddr = ReadValue - 1;
+      up(sem); 
     }
-    up(sem); 
 
     printf("Decrementor: Our shared value is %d now\n", *shmaddr);
 

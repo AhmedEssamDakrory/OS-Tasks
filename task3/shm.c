@@ -14,8 +14,7 @@
 int Incrementor(int shmid) {
   int *shmaddr, ReadValue;
   int i;
-  char quit_message[5];
-   
+  
   shmaddr = (int*) shmat(shmid, (void *)0, 0);
   if(shmaddr == -1) {	
   	perror("Error in attach in Incrementor");
